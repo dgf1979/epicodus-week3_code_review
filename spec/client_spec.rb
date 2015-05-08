@@ -22,4 +22,12 @@ describe(Client) do
   end
 
 
+  describe('.find') do
+    it('locates and returns the saved object instance having the id') do
+      new_client = Client.new({ :name => 'Bruce Willis'})
+      new_client.save()
+      expect(Client.find(new_client.id()).name()).to(eq('Bruce Willis'))
+    end
+  end
+
 end
