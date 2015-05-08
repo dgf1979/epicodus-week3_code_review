@@ -49,6 +49,14 @@ get('/clients/:id') do
   erb(:client_details)
 end
 
+#client delete
+delete('/clients/:id') do
+  id = params.fetch('id')
+  client = Client.find(id)
+  client.delete()
+  redirect to('/clients')
+end
+
 #
 ##Stylists
 #
