@@ -34,4 +34,9 @@ class Stylist
     return Stylist.new({ :name => name, :id => id })
   end
 
+  define_method(:delete) do
+    sql = "DELETE FROM stylists WHERE id = #{@id};"
+    DB.exec(sql)
+  end
+
 end

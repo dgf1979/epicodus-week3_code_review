@@ -28,4 +28,16 @@ describe(Stylist) do
     end
   end
 
+  describe('#delete') do
+    it('deletes a row from the database whose id matches this object id') do
+      new_stylist = Stylist.new({ :name => 'Albert Einstein'})
+      new_stylist.save()
+      new_stylist = Stylist.new({ :name => 'Donald Trump'})
+      new_stylist.save()
+      expect(Stylist.all().length).to(eq(2))
+      new_stylist.delete()
+      expect(Stylist.all().length).to(eq(1))
+    end
+  end
+
 end
