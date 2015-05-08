@@ -1,6 +1,6 @@
 <ul>
   <% @all_stylists.each do |stylist| %>
-    <li><%= stylist.name() %></li>
+    <li><a href='/stylists/<%= stylist.id() %>'><%= stylist.name() %></a></li>
   <% end %>
 </ul>
 <br />

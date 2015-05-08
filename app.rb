@@ -46,7 +46,7 @@ get('/clients/:id') do
   id = params.fetch('id')
   @client = Client.find(id)
   @stylist = Stylist.find(@client.stylist_id())
-  erb(:client_details) 
+  erb(:client_details)
 end
 
 #
@@ -69,4 +69,11 @@ post('/stylists/new') do
   new_stylist = Stylist.new({ :name => name})
   new_stylist.save()
   redirect to('/stylists')
+end
+
+#stylist details
+get('/stylists/:id') do
+  id = params.fetch('id')
+  @stylist = Stylist.find(id)
+  erb(:stylist_details)
 end
