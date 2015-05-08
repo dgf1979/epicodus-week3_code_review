@@ -14,16 +14,18 @@ end
 
 describe('Salon Management', { :type => :feature }) do
 
+  # As a salon owner, I want to view, add, update, and delete stylists
   describe('Stylists') do
+    #view, add
     it('creates and verifies saving a new stylist') do
       visit('/stylists/new')
       fill_in('name', :with => 'Donald Trump')
       click_button('Add')
       expect(page).to(have_content('Donald Trump'))
     end
-
+    #delete
     it('deletes a stylist') do
-      #add the cleint
+      #add the client
       visit('/stylists/new')
       fill_in('name', :with => 'Donald Trump')
       click_button('Add')
@@ -34,16 +36,31 @@ describe('Salon Management', { :type => :feature }) do
       click_button('Delete')
       expect(page).to_not(have_content('Donald Trump'))
     end
+    #update
+    it('updates name') do
+      #add the client
+      visit('/stylists/new')
+      fill_in('name', :with => 'Donald Trump')
+      click_button('Add')
+      expect(page).to(have_content('Donald Trump'))
+      #navigate to details for client
+      click_link('Donald Trump')
+      fill_in('name', :with => 'Don Trump')
+      click_button('Update')
+      expect(page).to_not(have_content('Don Trump'))
+    end
   end
 
+  # As a salon owner, I want to view, add, update and delete clients
   describe('Clients') do
+    #add/view
     it('creates and verifies saving a new client') do
       visit('/clients/new')
       fill_in('name', :with => 'Bruce Willis')
       click_button('Add')
       expect(page).to(have_content('Bruce Willis'))
     end
-
+    #delete
     it('deletes a client') do
       #add the client
       visit('/clients/new')
@@ -56,7 +73,7 @@ describe('Salon Management', { :type => :feature }) do
       click_button('Delete')
       expect(page).to_not(have_content('Bruce Willis'))
     end
-
+    # As a salon owner, I want to add clients to a stylist
     it('assigns a stylist to the client') do
       #adds a stylist
       visit('/stylists/new')
@@ -74,11 +91,4 @@ describe('Salon Management', { :type => :feature }) do
       expect(page).to(have_content('Donald Trump'))
     end
   end
-
 end
-
-# As a salon owner, I want to view, add, update, and delete stylists
-
-# As a salon owner, I want to view, add, update and delete clients
-
-# As a salon owner, I want to add clients to a stylist

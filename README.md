@@ -1,12 +1,13 @@
-## [APPNAME] ##
+## Salon ##
 
 This application is meant to fulfill the requirements of an assignment through Epicodus code school. For more information on Epicodus, see <http://www.epicodus.com/>.
 
 ### Description ###
 
-[simple app description]
+Demonstrates use of CRUD and REST via a simple salon app
 
-**Assignment:** [assignment title]
+
+**Assignment:** Week 3 Code Review
 
 **<https://www.learnhowtoprogram.com/table-of-contents>**
 
@@ -16,7 +17,9 @@ Andrew Finstrom
 
 ### Setup ###
 ```
-    setup code or details here
+    *requires postrgres sql - refer to /setup/sql/dev_db.sql
+    from postgres CLI run the db creation script in /setup/sql/dev_db.sql
+    ruby app.rb (e.g. '\i ./setup/sql/dev_db.sql')
 ```
 
 ### License ###
