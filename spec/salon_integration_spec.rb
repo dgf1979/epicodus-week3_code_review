@@ -11,3 +11,10 @@ describe('Sinatra framework check', { :type => :feature }) do
     expect(page).to have_content('Sinatra OK')
   end
 end
+
+
+# As a salon owner, I want to view, add, update, and delete stylists
+
+# As a salon owner, I want to view, add, update and delete clients
+
+# As a salon owner, I want to add clients to a stylist

@@ -41,4 +41,15 @@ describe(Client) do
     end
   end
 
+  describe('#assign_stylist_by_id') do
+    it('assigns a stylist to a client by passing the stylist id') do
+      new_client = Client.new({ :name => 'Bruce Willis'})
+      new_client.save()
+      new_client.assign_stylist_by_id(1)
+      expect(new_client.stylist_id()).to(eq(1))
+      found_client = Client.find(new_client.id())
+      expect(found_client.stylist_id()).to(eq(1))
+    end
+  end
+
 end

@@ -7,7 +7,7 @@ class Client
       @id = attributes.fetch(:id)
     end
     if attributes.has_key?(:stylist_id)
-      @id = attributes.fetch(:stylist_id)
+      @stylist_id = attributes.fetch(:stylist_id)
     end
   end
 
@@ -35,11 +35,18 @@ class Client
     results = DB.exec(sql)
     result = results.first()
     name = result.fetch('name')
-    return Client.new({ :name => name, :id => id })
+    stylist_id = result.fetch('stylist_id').to_i
+    return Client.new({ :name => name, :id => id, :stylist_id => stylist_id })
   end
 
   define_method(:delete) do
     sql = "DELETE FROM clients WHERE id = #{@id};"
+    DB.exec(sql)
+  end
+
+  define_method(:assign_stylist_by_id) do |stylist_id|
+    @stylist_id = stylist_id
+    sql = "UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id}"
     DB.exec(sql)
   end
 
