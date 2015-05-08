@@ -45,7 +45,7 @@ describe('Salon Management', { :type => :feature }) do
     end
 
     it('deletes a client') do
-      #add the cleint
+      #add the client
       visit('/clients/new')
       fill_in('name', :with => 'Bruce Willis')
       click_button('Add')
@@ -55,6 +55,23 @@ describe('Salon Management', { :type => :feature }) do
       #delete the client
       click_button('Delete')
       expect(page).to_not(have_content('Bruce Willis'))
+    end
+
+    it('assigns a stylist to the client') do
+      #adds a stylist
+      visit('/stylists/new')
+      fill_in('name', :with => 'Donald Trump')
+      click_button('Add')
+      #add the client
+      visit('/clients/new')
+      fill_in('name', :with => 'Bruce Willis')
+      click_button('Add')
+      #navigate to details for client
+      click_link('Bruce Willis')
+      #select the stylist from the list and submit
+      select('Donald Trump', :from => 'stylist_id')
+      click_button('Assign')
+      expect(page).to(have_content('Donald Trump'))
     end
   end
 
