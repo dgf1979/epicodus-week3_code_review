@@ -1,0 +1,7 @@
+<ul>
+  <% @all_stylists.each do |stylist| %>
+    <li><%= stylist.name() %></li>
+  <% end %>
+</ul>
+<br />
+<a href='/stylists/new'>Add New Stylist</a>

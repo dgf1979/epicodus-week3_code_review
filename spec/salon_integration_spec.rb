@@ -15,7 +15,12 @@ end
 describe('Salon Management', { :type => :feature }) do
 
   describe('Stylists') do
-
+    it('creates and verifys saving a new stylist') do
+      visit('/stylists/new')
+      fill_in('name', :with => 'Donald Trump')
+      click_button('Add')
+      expect(page).to(have_content('Donald Trump'))
+    end
   end
 
   describe('Clients') do

@@ -19,7 +19,9 @@ get('/') do
   erb(:index)
 end
 
-
+#
+##CLIENTS##
+#
 #list clients
 get('/clients') do
   @all_clients = Client.all()
@@ -37,4 +39,26 @@ post('/clients/new') do
   new_client = Client.new({ :name => name})
   new_client.save()
   redirect to('/clients')
+end
+
+#
+##Stylists
+#
+#list stylists
+get('/stylists') do
+  @all_stylists = Stylist.all()
+  erb(:stylists)
+end
+
+#add stylists form
+get('/stylists/new') do
+  erb(:stylist_new_form)
+end
+
+#create stylists
+post('/stylists/new') do
+  name = params.fetch('name')
+  new_stylist = Stylist.new({ :name => name})
+  new_stylist.save()
+  redirect to('/stylists')
 end
