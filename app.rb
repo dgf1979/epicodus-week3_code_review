@@ -59,12 +59,18 @@ delete('/clients/:id') do
   redirect to('/clients')
 end
 
-#client assign a new stylist
+#client update
 patch('/clients/:id') do
   id = params.fetch('id')
-  stylist_id = params.fetch('stylist_id')
   client = Client.find(id)
-  client.assign_stylist_by_id(stylist_id)
+  if params.has_key?('stylist_id')
+    stylist_id = params.fetch('stylist_id')
+    client.assign_stylist_by_id(stylist_id)
+  end
+  if params.has_key?('name')
+    name = params.fetch('name')
+    client.update({ :name => name })
+  end
   redirect to("/clients/#{id}")
 end
 
@@ -104,4 +110,15 @@ delete('/stylists/:id') do
   stylist = Stylist.find(id)
   stylist.delete()
   redirect to('/stylists')
+end
+
+#stylist update
+patch('/stylists/:id') do
+  id = params.fetch('id')
+  stylist = Stylist.find(id)
+  if params.has_key?('name')
+    name = params.fetch('name')
+    stylust.update({ :name => name })
+  end
+  redirect to("/stylists/#{id}")
 end

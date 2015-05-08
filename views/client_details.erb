@@ -1,4 +1,8 @@
-Name: <%= @client.name() %>
+<form action='/clients/<%= @client.id() %>' method='post'>
+  <input name='_method' type='hidden' value='patch'>
+  Name: <input type='text' id='name' name='name' value='<%= @client.name() %>' >
+  <button type='submit'>Update</button>
+</form>
 <br /><br />
 Stylist: <%= @stylist.name() %>
 <br /><br />
@@ -12,8 +16,6 @@ Stylist: <%= @stylist.name() %>
   </select>
   <button type='submit'>Assign</button>
 </form>
-<br /><br />
-
 <br /><br />
 <form action='/clients/<%= @client.id() %>' method='post'>
   <input name='_method' type='hidden' value='delete'>

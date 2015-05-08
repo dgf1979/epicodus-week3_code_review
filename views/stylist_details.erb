@@ -1,4 +1,8 @@
-Name: <%= @stylist.name() %>
+<form action='/stylists/<%= @stylist.id() %>' method='post'>
+  <input name='_method' type='hidden' value='patch'>
+  Name: <input type='text' id='name' name='name' value='<%= @stylist.name() %>' >
+  <button type='submit'>Update</button>
+</form>
 <br /><br />
 Assigned Clients -
 <ul>

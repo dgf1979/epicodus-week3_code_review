@@ -46,7 +46,7 @@ class Client
 
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
-    sql = "UPDATE clients SET name = '#{@name}'"
+    sql = "UPDATE clients SET name = '#{@name}' WHERE id = #{@id}"
     DB.exec(sql)
   end
 
