@@ -43,4 +43,10 @@ class Stylist
     DB.exec(sql)
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    sql = "UPDATE stylists SET name = '#{@name}'"
+    DB.exec(sql)
+  end
+
 end

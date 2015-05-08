@@ -44,6 +44,12 @@ class Client
     DB.exec(sql)
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    sql = "UPDATE clients SET name = '#{@name}'"
+    DB.exec(sql)
+  end
+
   define_method(:assign_stylist_by_id) do |stylist_id|
     @stylist_id = stylist_id
     sql = "UPDATE clients SET stylist_id = #{@stylist_id} WHERE id = #{@id}"

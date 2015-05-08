@@ -9,6 +9,17 @@ describe(Stylist) do
     end
   end
 
+  describe('#update') do
+    it('update the object with a new name property') do
+      new_stylist = Stylist.new({ :name => 'Donald Trump'})
+      new_stylist.save()
+      new_stylist.update({ :name => 'Donny Trump'})
+      expect(new_stylist.name()).to(eq('Donny Trump'))
+      find_same_stylist = Stylist.find(new_stylist.id())
+      expect(find_same_stylist.name()).to(eq('Donny Trump')) 
+    end
+  end
+
   describe('.all') do
     it('expects an array of objects equal to the number of saved object instances') do
       new_stylist = Stylist.new({ :name => 'Albert Einstein'})

@@ -10,6 +10,17 @@ describe(Client) do
     end
   end
 
+  describe('#update') do
+    it('update the object with a new name property') do
+      new_client = Client.new({ :name => 'Bruce Willis'})
+      new_client.save()
+      new_client.update({ :name => 'Bruno'})
+      expect(new_client.name()).to(eq('Bruno'))
+      find_same_client = Client.find(new_client.id())
+      expect(find_same_client.name()).to(eq('Bruno')) 
+    end
+  end
+
   describe('.all') do
     it('expects an array of Client objects equal to the number of saved clients') do
       new_client = Client.new({ :name => 'Jason Statham'})
