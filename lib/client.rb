@@ -38,4 +38,9 @@ class Client
     return Client.new({ :name => name, :id => id })
   end
 
+  define_method(:delete) do
+    sql = "DELETE FROM clients WHERE id = #{@id};"
+    DB.exec(sql)
+  end
+
 end

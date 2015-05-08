@@ -21,12 +21,23 @@ describe(Client) do
     end
   end
 
-
   describe('.find') do
     it('locates and returns the saved object instance having the id') do
       new_client = Client.new({ :name => 'Bruce Willis'})
       new_client.save()
       expect(Client.find(new_client.id()).name()).to(eq('Bruce Willis'))
+    end
+  end
+
+  describe('#delete') do
+    it('deletes a row from the database whose id matches this object id') do
+      new_client = Client.new({ :name => 'Bruce Willis'})
+      new_client.save()
+      new_client = Client.new({ :name => 'Bruce Willis'})
+      new_client.save()
+      expect(Client.all().length).to(eq(2))
+      new_client.delete()
+      expect(Client.all().length).to(eq(1))
     end
   end
 
