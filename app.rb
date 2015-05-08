@@ -41,6 +41,14 @@ post('/clients/new') do
   redirect to('/clients')
 end
 
+#client details
+get('/clients/:id') do
+  id = params.fetch('id')
+  @client = Client.find(id)
+  @stylist = Stylist.find(@client.stylist_id())
+  erb(:client_details) 
+end
+
 #
 ##Stylists
 #

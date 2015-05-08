@@ -29,9 +29,13 @@ class Stylist
   define_singleton_method(:find) do |id|
     sql = "SELECT * FROM stylists WHERE id = #{id}"
     results = DB.exec(sql)
-    result = results.first()
-    name = result.fetch('name')
-    return Stylist.new({ :name => name, :id => id })
+    if results.num_tuples.zero?
+      return Stylist.new({ :name => '', :id => 0 })
+    else
+      result = results.first()
+      name = result.fetch('name')
+      return Stylist.new({ :name => name, :id => id })
+    end
   end
 
   define_method(:delete) do
