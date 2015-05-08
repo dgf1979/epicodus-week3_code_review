@@ -1,6 +1,7 @@
 require('sinatra')
 require('sinatra/reloader')
-require('./lib/sample')
+require('./lib/client')
+require('./lib/stylist')
 also_reload('lib/**/*.rb')
 require('pry')
 
