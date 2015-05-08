@@ -17,4 +17,17 @@ class Client
     @id = results.first().fetch('id').to_i
   end
 
+  define_singleton_method(:all) do
+    all_clients = []
+    sql = "SELECT * FROM clients"
+    results = DB.exec(sql)
+    results.each do |result|
+      name = result.fetch('name')
+      id = result.fetch('id').to_i
+      stylist_id = result.fetch('stylist_id').to_i
+      all_clients.push(Client.new({ :name => name, :id => id, :stylist_id => stylist_id }))
+    end
+    return all_clients
+  end
+
 end
