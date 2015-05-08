@@ -18,4 +18,5 @@ describe(Stylist) do
       expect(Stylist.all().first().class).to(eq(Stylist))
       expect(Stylist.all().length).to(eq(2))
     end
+  end
 end
