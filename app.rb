@@ -85,3 +85,11 @@ get('/stylists/:id') do
   @stylist = Stylist.find(id)
   erb(:stylist_details)
 end
+
+#stylist delete
+delete('/stylists/:id') do
+  id = params.fetch('id')
+  stylist = Stylist.find(id)
+  stylist.delete()
+  redirect to('/stylists')
+end

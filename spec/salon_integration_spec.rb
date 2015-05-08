@@ -21,6 +21,19 @@ describe('Salon Management', { :type => :feature }) do
       click_button('Add')
       expect(page).to(have_content('Donald Trump'))
     end
+
+    it('deletes a stylist') do
+      #add the cleint
+      visit('/stylists/new')
+      fill_in('name', :with => 'Donald Trump')
+      click_button('Add')
+      expect(page).to(have_content('Donald Trump'))
+      #navigate to details for client
+      click_link('Donald Trump')
+      #delete the client
+      click_button('Delete')
+      expect(page).to_not(have_content('Donald Trump'))
+    end
   end
 
   describe('Clients') do

@@ -1,4 +1,11 @@
 Name: <%= @stylist.name() %>
-<br />
+<br /><br />
 
+
+<br /><br />
+Delete This Stylist:
 <br />
+<form action='/stylists/<%= @stylist.id() %>' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <button type='submit'>Delete</button>
+</form>
