@@ -26,4 +26,12 @@ class Stylist
     return all_stylists
   end
 
+  define_singleton_method(:find) do |id|
+    sql = "SELECT * FROM stylists WHERE id = #{id}"
+    results = DB.exec(sql)
+    result = results.first()
+    name = result.fetch('name')
+    return Stylist.new({ :name => name, :id => id })
+  end
+
 end

@@ -11,12 +11,21 @@ describe(Stylist) do
 
   describe('.all') do
     it('expects an array of objects equal to the number of saved object instances') do
-      new_client = Stylist.new({ :name => 'Albert Einstein'})
-      new_client.save()
-      new_client = Stylist.new({ :name => 'Donald Trump'})
-      new_client.save()
+      new_stylist = Stylist.new({ :name => 'Albert Einstein'})
+      new_stylist.save()
+      new_stylist = Stylist.new({ :name => 'Donald Trump'})
+      new_stylist.save()
       expect(Stylist.all().first().class).to(eq(Stylist))
       expect(Stylist.all().length).to(eq(2))
     end
   end
+
+  describe('.find') do
+    it('locates and returns the saved object instance having the id') do
+      new_stylist = Stylist.new({ :name => 'Albert Einstein'})
+      new_stylist.save()
+      expect(Stylist.find(new_stylist.id()).name()).to(eq('Albert Einstein'))
+    end
+  end
+
 end
