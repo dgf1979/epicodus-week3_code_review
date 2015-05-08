@@ -4,7 +4,8 @@ require('pry')
 require('client')
 require('stylist')
 
-DB = PG.connect({:dbname => 'hair_salon_test'})
+test_db = 'hair_salon_test'
+DB = PG.connect({:dbname => test_db })
 
 RSpec.configure do |config|
   config.before(:each) do

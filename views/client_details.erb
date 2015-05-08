@@ -1,12 +1,21 @@
 Name: <%= @client.name() %>
 <br /><br />
-Stylist: <% @stylist.name() %>
-
+Stylist: <%= @stylist.name() %>
+<br /><br />
+<form action='/clients/<%= @client.id() %>' method='post'>
+  <input name='_method' type='hidden' value='patch'>
+  Assign New Stylist:
+  <select id='stylist_id' name='stylist_id'>
+    <% Stylist.all().each do |stylist| %>
+      <option value='<%= stylist.id() %>'><%= stylist.name() %></option>
+    <% end %>
+  </select>
+  <button type='submit'>Assign</button>
+</form>
+<br /><br />
 
 <br /><br />
-Delete This Client:
-<br />
 <form action='/clients/<%= @client.id() %>' method='post'>
   <input name='_method' type='hidden' value='delete'>
-  <button type='submit'>Delete</button>
+  <button type='submit'>Delete</button> This Client
 </form>

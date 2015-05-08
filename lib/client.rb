@@ -50,4 +50,17 @@ class Client
     DB.exec(sql)
   end
 
+  define_singleton_method(:find_by_stylist_id) do |stylist_id|
+    clients = []
+    sql = "SELECT * FROM clients WHERE stylist_id = #{stylist_id}"
+    results = DB.exec(sql)
+    results.each do |result|
+      name = result.fetch('name')
+      id = result.fetch('id').to_i
+      stylist_id = result.fetch('stylist_id').to_i
+      clients.push(Client.new({ :name => name, :id => id, :stylist_id => stylist_id }))
+    end
+    return clients
+  end
+
 end

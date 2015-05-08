@@ -6,7 +6,9 @@ also_reload('lib/**/*.rb')
 require('pry')
 require('pg')
 
-DB = PG.connect({:dbname => 'hair_salon'})
+if (defined? DB) == nil
+  DB = PG.connect({:dbname => 'hair_salon'})
+end
 
 get('/test') do
   @test_var = 'Sinatra OK'
@@ -57,6 +59,15 @@ delete('/clients/:id') do
   redirect to('/clients')
 end
 
+#client assign a new stylist
+patch('/clients/:id') do
+  id = params.fetch('id')
+  stylist_id = params.fetch('stylist_id')
+  client = Client.find(id)
+  client.assign_stylist_by_id(stylist_id)
+  redirect to("/clients/#{id}")
+end
+
 #
 ##Stylists
 #
@@ -83,6 +94,7 @@ end
 get('/stylists/:id') do
   id = params.fetch('id')
   @stylist = Stylist.find(id)
+  @assigned_clients = Client.find_by_stylist_id(@stylist.id())
   erb(:stylist_details)
 end
 
