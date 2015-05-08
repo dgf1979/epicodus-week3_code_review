@@ -1,0 +1,7 @@
+<ul>
+  <% @all_clients.each do |client| %>
+    <li><%= client.name() %></li>
+  <% end %>
+</ul>
+<br />
+<a href='/clients/new'>Add New Client</a>

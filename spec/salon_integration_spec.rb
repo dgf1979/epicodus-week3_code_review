@@ -12,6 +12,22 @@ describe('Sinatra framework check', { :type => :feature }) do
   end
 end
 
+describe('Salon Management', { :type => :feature }) do
+
+  describe('Stylists') do
+
+  end
+
+  describe('Clients') do
+    it('creates and verifys saving a new client') do
+      visit('/clients/new')
+      fill_in('name', :with => 'Bruce Willis')
+      click_button('Add')
+      expect(page).to(have_content('Bruce Willis'))
+    end
+  end
+
+end
 
 # As a salon owner, I want to view, add, update, and delete stylists
 
